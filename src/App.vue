@@ -1,24 +1,21 @@
 <template>
   <div class="app">
-      <ul 
-        v-for="job in jobs"
-        :key="job.id"
-        >
-        <li>
-          <h2>{{job.title}}</h2>
-          <div>{{job.location}}</div>
-          <div>{{job.salary}}</div>
-        </li>
-      </ul>
+    <JobList
+      :jobs = this.jobs
+    />
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, reactive, toRefs, ref } from "vue";
   import {Job} from './types/Job'
-  export default defineComponent({
+
+  import JobList from './components/JobList.vue'
+export default defineComponent({
     name: "App",
-    components: {},
+    components: {
+      JobList
+    },
     setup() {
       const jobs = ref<Job[]>([
         {
@@ -51,7 +48,7 @@
     padding: 0;
     list-style: none;
   }
-  
+
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
